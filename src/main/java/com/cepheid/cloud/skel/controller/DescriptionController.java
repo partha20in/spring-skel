@@ -2,6 +2,7 @@ package com.cepheid.cloud.skel.controller;
 
 import java.util.Collection;
 import java.util.Optional;
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -10,69 +11,69 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.cepheid.cloud.skel.model.Item;
-import com.cepheid.cloud.skel.service.ItemService;
+import com.cepheid.cloud.skel.model.*;
+import com.cepheid.cloud.skel.service.*;
 import io.swagger.annotations.Api;
 
 
-// curl http:/localhost:8444/app/api/1.0/items/item/{id} getby Id
-//curl http:/localhost:8444/app/api/1.0/items/item/{id} delete by id
-// curl http:/localhost:8444/app/api/1.0/items get all items
-//curl http:/localhost:8444/app/api/1.0/items  POST insert new items
-//curl http:/localhost:8444/app/api/1.0/items  PUT update items
+// curl http:/localhost:8444/app/api/1.0/descriptions/description/{id} getById
+//curl http:/localhost:8444/app/api/1.0/descriptions/description/{id}  delete
+//curl http:/localhost:8444/app/api/1.0/descriptions getAll 
+//curl http:/localhost:8444/app/api/1.0/descriptions  update using PUT
+//curl http:/localhost:8444/app/api/1.0/descriptions  insert using POST
 
 @Component
-@Path("/api/1.0/items")
+@Path("/api/1.0/descriptions")
 @Api()
-public class ItemController {
+public class DescriptionController {
   
 
-	@Autowired
-	private ItemService service;
-
+  @Autowired
+  private DescriptionService service;
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-  public Collection<Item> getItems() {
+  public Collection<Description> getDescriptions() {
 	
-    return service.getItemsService();
+    return service.getDescriptionService();
   }
   
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-  public Item postItems(@RequestBody Item it) {
-  return service.postItemsService(it);
+  public Description postDescription(@RequestBody Description de) {
+  return service.postDescriptionService(de);
   }
   
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-  public Item updateItems(@RequestBody Item it) {
-  return service.updateItems(it);
+  public Description updateItems(@RequestBody Description de) {
+  return service.updateDescription(de);
   }
   
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-  @Path("/item/{id}")
-  public Optional<Item> getItemById(@PathParam(value = "id") Long id) {
+  @Path("/description/{id}")
+  public Optional<Description> getItemById(@PathParam(value = "id") Long id) {
    
-   return service.getItemById(id);
+   return service.getDescriptionById(id);
   }
   
   @DELETE
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-  @Path("/item/{id}")
-  public void deleteItemById(@PathParam(value = "id") Long id) {
-   service.deleteItemById(id);
+  @Path("/description/{id}")
+  public void deleteDescriptionById(@PathParam(value = "id") Long id) {
+   service.deleteDescriptionById(id);
    
   }
  
