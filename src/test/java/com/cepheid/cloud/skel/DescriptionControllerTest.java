@@ -18,7 +18,7 @@ import com.cepheid.cloud.skel.model.Item;
 public class DescriptionControllerTest extends TestBase {
 
   @Test
-  public void testGetItems() throws Exception {
+  public void testGetDescriptions() throws Exception {
     Builder descriptionController = getBuilder("/app/api/1.0/descriptions");
     
     Collection<Description> desc = descriptionController.get(new GenericType<Collection<Description>>() {
@@ -27,7 +27,7 @@ public class DescriptionControllerTest extends TestBase {
   }
   
   @Test
-  public void testInsertItems() throws Exception {
+  public void testInsertDescriptions() throws Exception {
     Builder descriptionController = getBuilder("/app/api/1.0/descriptions");
     Item i=new Item("Bike","valid");
     Long id=(long) 1;
@@ -37,7 +37,7 @@ public class DescriptionControllerTest extends TestBase {
   }
   
   @Test
-  public void testUpdateItems() throws Exception {
+  public void testUpdateDescriptions() throws Exception {
     Builder descriptionController = getBuilder("/app/api/1.0/descriptions");
     Item i=new Item("Bike","valid");
     Long id=(long) 1;
@@ -47,7 +47,7 @@ public class DescriptionControllerTest extends TestBase {
 
   }
   @Test
-  public void testGetItemsById() throws Exception {
+  public void testGetDescriptionsById() throws Exception {
     Builder descriptionController = getBuilder("/app/api/1.0/descriptions/description/1");
     
     Item items = descriptionController.get(new GenericType<Item>() {
@@ -56,7 +56,7 @@ public class DescriptionControllerTest extends TestBase {
   }
   
   @Test
-  public void testDeleteItemsById() throws Exception {
+  public void testDeleteDescriptionsById() throws Exception {
     Builder descriptionController = getBuilder("/app/api/1.0/descriptions/description/1");
     
     descriptionController.delete();
